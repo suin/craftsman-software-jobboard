@@ -7,15 +7,11 @@ jobs:
       - uses: actions/checkout@v1
       - uses: reviewdog/action-setup@v1
       - run: reviewdog -version
-      - name: Install PNPM
-        run: |
-          npm install pnpm -g
-          pnpm --version
       - name: installl-textlint
-        run: pnpm install
+        run: npm install --ignore-scripts
       - name: run-reviewdog
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          $(pnpm bin)/textlint -f checkstyle '*.md' 'posts/**/*.md' \
+          npx textlint -f checkstyle '*.md' 'posts/**/*.md' \
             | reviewdog -f=checkstyle -name="textlint" -reporter=GitHub-pr-review
