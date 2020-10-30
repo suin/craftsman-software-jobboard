@@ -10,12 +10,8 @@ jobs:
         FLAGS: src/
     steps:
       - uses: actions/checkout@v1
-      - name: setup-reviewdog
-        run: |
-          mkdir -p $HOME/bin && wget -O - -q https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh \
-            | sh -s -- -b /usr/local/bin/ v0.9.13
-          apk --update add Git && \
-            rm -rf /var/lib/apt/lists/*
+      - uses: reviewdog/action-setup@v1
+      - run: reviewdog -version
       - name: installl-textlint
         run: |
           cd "$GITHUB_WORKSPACE"
