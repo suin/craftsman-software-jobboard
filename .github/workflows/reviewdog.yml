@@ -1,7 +1,7 @@
-name: 'Run textlint with reviewdog'
+name: Reviewdog
 on: [pull_request]
 jobs:
-  textlint:
+  Textlint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
